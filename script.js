@@ -52,7 +52,7 @@
       });
     });
     
-    const text = "On Development...";
+    const text = "AERO-PS";
     const speed = 100;         // Typing speed (ms)
     const deleteSpeed = 150;    // Deleting speed (ms)
     const waitBeforeDelete = 1000;  // Wait after full text before blinking
@@ -113,42 +113,126 @@
     
     // Start the animation
     typeWriter();
-    
 
-    // Example notifications
-const messages = [
-    {
-      sender: "Alice",
-      preview: "Hey! Are you coming to the meeting...",
-      full: "Hey! Are you coming to the meeting later today at 3 PM? Don't forget the project files!"
-    },
-    {
-      sender: "Bob",
-      preview: "Don't forget to submit your report...",
-      full: "Don't forget to submit your report before Friday afternoon. Let me know if you need any help!"
-    },
-    {
-      sender: "Charlie",
-      preview: "Let's catch up soon!",
-      full: "Let's catch up soon! It's been way too long since our last coffee meetup. How about this weekend?"
-    }
-  ];
-  
-  const notificationsContainer = document.getElementById('notifications');
-  
-  messages.forEach((msg, index) => {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerHTML = `
-      <div class="sender">${msg.sender}</div>
-      <div class="preview">${msg.preview}</div>
-      <div class="full-message">${msg.full}</div>
-    `;
-  
-    notification.addEventListener('click', () => {
-      notification.classList.toggle('expanded');
+  function copyToClipboard(elementId, button) {
+    const text = document.getElementById(elementId).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = button.innerHTML;
+      button.innerHTML = '<i class="ri-check-line"></i>';
+      button.disabled = true;
+      setTimeout(() => {
+        button.innerHTML = original;
+        button.disabled = false;
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
     });
+  }
+
+  function toggleChat() {
+    const chat = document.getElementById('chatBox');
   
-    notificationsContainer.appendChild(notification);
+    if (chat.classList.contains('show')) {
+      chat.classList.remove('show');
+      chat.classList.add('hide');
+  
+      // Wait for animation to finish, then hide completely
+      setTimeout(() => {
+        chat.style.display = 'none';
+        chat.classList.remove('hide');
+      }, 300);
+    } else {
+      chat.style.display = 'flex'; // show first so animation can play
+      setTimeout(() => {
+        chat.classList.add('show');
+      }, 10); // short delay to allow transition to trigger
+    }
+  }
+  
+  
+
+  function selectOption(userChoice) {
+    const chat = document.getElementById('chatMessages');
+    const choices = document.getElementById('choiceButtons');
+
+    // Hide buttons
+    choices.style.display = "none";
+
+    // User message
+    const userMsg = document.createElement('div');
+    userMsg.classList.add('chat-bubble', 'user-msg');
+    userMsg.textContent = userChoice;
+    chat.appendChild(userMsg);
+
+    // Typing animation
+    const typingBubble = document.createElement('div');
+    typingBubble.classList.add('chat-bubble', 'ai-msg', 'typing');
+    typingBubble.textContent = "AR 0-3 is typing...";
+    typingBubble.id = "typingBubble";
+    chat.appendChild(typingBubble);
+
+    chat.scrollTop = chat.scrollHeight;
+
+    // Simulate typing delay
+    setTimeout(() => {
+      typingBubble.remove();
+
+      const aiMsg = document.createElement('div');
+      aiMsg.classList.add('chat-bubble', 'ai-msg');
+      aiMsg.textContent = getAIResponse(userChoice);
+      chat.appendChild(aiMsg);
+
+      // Show choices again
+      choices.style.display = "flex";
+
+      chat.scrollTop = chat.scrollHeight;
+    }, 1200);
+  }
+
+  function getAIResponse(choice) {
+    switch (choice) {
+      case 'Who is CEO Of InPanels?':
+        return 'Kuruto is an CEO of InPanels Company, he selling a panel for whatsapp bot. also the price its very cheap.';
+      case 'Who is DREVVIANN?':
+        return 'DREVVIANN is an logo designer, and web development, also he its partner of the CEO.';
+      case 'Are there any active discounts?':
+        return 'We have no discount active today.';
+      case 'I got a bug on the website':
+        return 'You can contact us on the Contact Menu on the navigation bar. Thanks for helping us to finding a bug on the website✨';
+      default:
+        return 'There is an error try again later.';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const previews = document.querySelectorAll('.preview');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closeBtn');
+    const modalImg = document.getElementById('modalImg');
+    const modalName = document.getElementById('modalName');
+    const modalMessage = document.getElementById('modalMessage');
+
+    previews.forEach(preview => {
+      preview.addEventListener('click', () => {
+        const name = preview.getAttribute('data-name');
+        const img = preview.getAttribute('data-img');
+        const message = preview.getAttribute('data-message');
+
+        modalImg.src = img;
+        modalName.textContent = name;
+        modalMessage.textContent = message;
+
+        popup.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target == popup) {
+        popup.style.display = 'none';
+      }
+    });
   });
-  

@@ -14,6 +14,7 @@
         <div class="nav-left">
         <img src="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" oncontextmenu="return false;" alt="Logo" class="logo">
         <input id="search-input" type="text" placeholder="Search..." class="search-bar">
+        <i class="ri-search-line"></i>
         </div>
     
         <div class="nav-right">
@@ -23,7 +24,7 @@
             </a>
         </div>
         <div class="icon profile">
-            <img class="profile" src="assets/img/Cantarella Icon - Wuthering Waves.jpeg" alt="">
+            <img class="profile" src="assets/img/aeroicon.gif" alt="">
         </div>
         <div class="hamburger" id="hamburger">
             <div class="bar"></div>
@@ -46,11 +47,101 @@
     <!-- Content Area -->
     <div class="content" id="content">
         <div class="home-image">
-            <img src="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="image" class="home-img">
+            <img src="assets/img/aeroicon.gif" alt="image" class="home-img">
         </div>
         <h1 class="home-title"><span id="typewriter-text"></span><span id="cursor">_</span></h1>
-        <p style="text-align: center;">Check our developer message in notification menu at navigation bar!</p>
+        <p style="text-align: center;">Description: None.</p>
+
+        <div class="item-wrapper">
+        <div class="item-container">
+            <h3>Host :</h3>
+            <a href="#" class="host-button">Download <i class="ri-download-2-line"></i></a> 
+            <a href="#" class="host-button">Copy Powertunnel <i class="ri-file-copy-line"></i></a> 
+            <a href="#" class="host-button">Copy IOS (Surge 5) <i class="ri-file-copy-line"></i></a> 
+        </div>
+
+        <div class="item-container">
+            <h3>Windows</h3>
+            <div class="copy-box">
+                <div id="text1" class="copy-text">
+                    91.134.85.13 growtopia1.com <br>
+                    91.134.85.13 growtopia2.com <br>
+                    91.134.85.13 www.growtopia1.com <br>
+                    91.134.85.13 www.growtopia2.com <br>
+                    91.134.85.13 RvLnd.here
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('text1', this)">
+                    <i class="ri-file-copy-line"></i>
+                </button>
+              </div>              
+        </div>
+
+        <div class="item-container">
+            <h3>MAC</h3>
+            <div class="copy-box">
+                <div id="text2" class="copy-text">
+                    91.134.85.13 growtopia1.com <br>
+                    91.134.85.13 growtopia2.com
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('text2', this)">
+                    <i class="ri-file-copy-line"></i>
+                </button>
+              </div>    
+            </div>
+        </div>
+
+        <div class="item-wrapper-btn">
+            <a class="item-container-btn" href="#">WhatsApp</a>
+            <a class="item-container-btn" href="#">Discord</a>
+            <a class="item-container-btn" href="#">Tiktok</a>
+        </div>
     </div>
+
+    <h1 class="faq-title"><i class="ri-message-2-fill"></i> FAQ</h1>
+    <!-- Previews -->
+    <div class="preview-container">
+        <div class="preview" data-name="Are GTPS Safe?" data-img="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" data-message="As soon as you dont use your real growtopia growid and password, it will be fine.">
+        <img src="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="Profile" class="preview-img">
+        <div class="preview-name">FAQ #1</div>
+        </div>
+    
+        <div class="preview" data-name="Why i can't access the server?" data-img="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" data-message="The server could be down or the owner may not have updated the host address.">
+        <img src="assets/img/inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="Profile" class="preview-img">
+        <div class="preview-name">FAQ #2</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="popup">
+        <div class="modal-content">
+        <span class="close" id="closeBtn">&times;</span>
+        <img src="" alt="Profile Image" class="profile-img" id="modalImg">
+        <div class="user-name" id="modalName"></div>
+        <div class="message-text" id="modalMessage"></div>
+        </div>
+    </div>
+
+     <!-- Chat trigger -->
+     <button class="chat-btn" onclick="toggleChat()">💬 Ask AR</button>
+
+     <!-- Chat popup -->
+      <div class="chat-popup" id="chatBox">
+         <div class="chat-header">
+            <img src="assets/img/aeroicon.gif" alt="AR 0-3" class="ai-avatar">
+            <span>AR 0-3</span>
+          </div>             
+          <div class="chat-body" id="chatMessages">
+          <div class="chat-bubble ai-msg">
+            Hi there! What would you like to know?
+        </div>
+          </div>
+          <div class="choice-buttons" id="choiceButtons">
+          <button onclick="selectOption('undefined')">✨ Coming soon.</button>
+          <button onclick="selectOption('undefined')">✨ Coming soon.</button>
+          <button onclick="selectOption('undefined')">Coming soon.</button>
+          <button onclick="selectOption('I got a bug on the website')">I got a bug on the website</button>
+          </div>
+      </div>
 
     
     <script src="script.js"></script>

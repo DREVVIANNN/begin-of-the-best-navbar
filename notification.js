@@ -2,6 +2,11 @@
 const messages = [
     {
       sender: "DREVVIANN",
+      preview: "Hey There!, the server its now...",
+      full: "Hey There!, the server its now back online! thanks for our patience."
+    },
+    {
+      sender: "DREVVIANN",
       preview: "Hey There!, we are now doing...",
       full: "Hey There!, we are now doing a development for our website!"
     }
